@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<GridPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Outer border -->
+    <columnConstraints>
+        <ColumnConstraints minWidth="5" prefWidth="30" />
+        <ColumnConstraints />
+        <ColumnConstraints minWidth="5" prefWidth="30" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="5" prefHeight="10" />
+        <RowConstraints prefHeight="565" />
+      <RowConstraints minHeight="10.0" prefHeight="40.0" />
+        <RowConstraints minHeight="5" prefHeight="10" />
+    </rowConstraints>
+
+    <!-- Inner pane -->
+    <GridPane hgap="10" vgap="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="280" />
+            <ColumnConstraints prefWidth="50" />
+            <ColumnConstraints prefWidth="470" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+
+        <!-- Add Product -->
+        <GridPane hgap="10" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="82" />
+                <ColumnConstraints prefWidth="74" />
+                <ColumnConstraints prefWidth="54" />
+                <ColumnConstraints prefWidth="40" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="60" />
+                <RowConstraints prefHeight="30" />
+                <RowConstraints prefHeight="30" />
+                <RowConstraints prefHeight="30" />
+                <RowConstraints prefHeight="30" />
+                <RowConstraints prefHeight="30" />
+            </rowConstraints>
+
+            <!-- Title -->
+            <Label text="Add Product" textFill="#505050" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.fillHeight="60" GridPane.rowIndex="0" GridPane.valignment="TOP">
+                <font>
+                    <Font name="Open Sans Bold" size="18" />
+                </font>
+            </Label>
+
+            <!-- ID -->
+            <Label text="ID" textFill="#505050" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="productId"  disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Name -->
+            <Label text="Name" textFill="#505050" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="productName" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+
+            <!-- Inventory Level -->
+            <Label text="Inventory Level" textFill="#505050" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="productInventoryLevel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <!-- Price/Cost -->
+            <Label text="Price/Cost" textFill="#505050" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="productPrice" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <!-- Max/Min -->
+            <Label text="Maximum" textFill="#505050" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <TextField fx:id="productInventoryMaximum" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label alignment="CENTER_RIGHT" prefWidth="110" text="Minimum" textFill="#505050" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="productInventoryMinimum" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+
+        </GridPane>
+
+        <!-- Tables -->
+        <GridPane hgap="10" vgap="10" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="200" />
+                <ColumnConstraints prefWidth="200" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints prefHeight="50" />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+
+            <!-- Search -->
+            <TextField fx:id="allPartsSearchField" onKeyReleased="#allPartsSearchKeyPressed" promptText="Search by Part ID or Name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <!-- All parts table -->
+            <TableView fx:id="allPartsTable" prefHeight="200" prefWidth="470.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <columns>
+                    <TableColumn prefWidth="60" text="Part ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partId" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="160" text="Part Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="110" text="Inventory Level">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="PartStock" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="120" text="Price/Cost per Unit">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partPrice" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <!-- Add menu -->
+            <ButtonBar GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.fillHeight="50" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                <buttons>
+                    <Button fx:id="addPartBtn" onAction="#addPartBtnAction" text="Add Part" />
+                </buttons>
+            </ButtonBar>
+
+            <!-- Product parts table -->
+            <TableView fx:id="productPartsTable" prefHeight="200" prefWidth="470.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <columns>
+                    <TableColumn prefWidth="60" text="Part ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partId" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="160" text="Part Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="110" text="Inventory Level">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="PartStock" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn prefWidth="120" text="Price/Cost per Unit">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partPrice" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <!-- Remove menu -->
+            <ButtonBar GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.fillHeight="50" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                <buttons>
+                    <Button fx:id="removeAssociatedPartBtn" onAction="#removeAssociatedPartBtnAction" text="Remove Associated Part" />
+                </buttons>
+            </ButtonBar>
+
+        </GridPane>
+    </GridPane>
+   <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <children>
+         <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveBtnAction" prefWidth="75.0" text="Save" textAlignment="RIGHT" />
+         <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancelBtnAction" prefWidth="75.0" text="Cancel" textAlignment="RIGHT" />
+      </children>
+      <GridPane.margin>
+         <Insets />
+      </GridPane.margin>
+   </HBox>
+</GridPane>

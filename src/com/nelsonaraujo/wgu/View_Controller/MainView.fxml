@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="MainView" minHeight="460" minWidth="1100" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Outer border -->
+    <columnConstraints>
+        <ColumnConstraints minWidth="5" prefWidth="30" />
+        <ColumnConstraints />
+        <ColumnConstraints minWidth="5" prefWidth="30" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="5" prefHeight="30" />
+        <RowConstraints prefHeight="400" />
+        <RowConstraints minHeight="5" prefHeight="30" />
+    </rowConstraints>
+
+
+    <!-- Inner pane -->
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="500" /> <!-- Parts pane -->
+            <ColumnConstraints prefWidth="40" /> <!-- Space -->
+            <ColumnConstraints prefWidth="500" /> <!-- Products pane -->
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints prefHeight="60" />
+            <RowConstraints prefHeight="300" />
+            <RowConstraints prefHeight="40" />
+        </rowConstraints>
+
+        <!-- Title pane -->
+        <Label alignment="TOP_CENTER" prefHeight="60" prefWidth="1040" text="Inventory Management System" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0">
+            <font>
+                <Font name="Open Sans Bold" size="24" />
+            </font>
+        </Label>
+
+        <!-- Parts pane -->
+        <GridPane hgap="10" style="-fx-border-color: #808080; -fx-border-radius: 10;" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="20" /> <!-- Spacer -->
+                <ColumnConstraints prefWidth="250" />
+                <ColumnConstraints prefWidth="250" />
+                <ColumnConstraints prefWidth="20" /> <!-- Spacer -->
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="10" /> <!-- Spacer -->
+                <RowConstraints /> <!-- Title and search -->
+                <RowConstraints /> <!-- Table -->
+                <RowConstraints /> <!-- Pane menu -->
+                <RowConstraints prefHeight="10" /> <!-- Spacer -->
+            </rowConstraints>
+
+            <!-- Title -->
+            <Label text="Parts" textFill="#505050" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font name="Open Sans Bold" size="18" />
+                </font>
+            </Label>
+
+            <!-- Search -->
+            <TextField fx:id="partsSearchField" onKeyReleased="#partsSearchKeyPressed" promptText="Search by Part ID or Name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+            <!-- Table -->
+            <TableView fx:id="partsTable" prefHeight="200" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                <columns>
+                    <TableColumn fx:id="partId" prefWidth="60" text="Part ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partId" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="partName" prefWidth="160" text="Part Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="PartStock" prefWidth="110" text="Inventory Level">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="PartStock" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="partPrice" prefWidth="120" text="Price/Cost per Unit">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="partPrice" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <!-- Parts menu -->
+            <ButtonBar GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <buttons>
+                    <Button fx:id="partsAddBtn" onAction="#partsAddBtnOnAction" text="Add" />
+                    <Button fx:id="partsModifyBtn" onAction="#partsModifyBtnOnAction" text="Modify" />
+                    <Button fx:id="partsDeleteBtn" onAction="#partsDeleteBtnOnAction" text="Delete" />
+                </buttons>
+            </ButtonBar>
+        </GridPane>
+
+        <!-- Spacer -->
+        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="40" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+
+        <!-- Products pane -->
+        <GridPane hgap="10" style="-fx-border-color: #808080; -fx-border-radius: 10;" vgap="10" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="20" /> <!-- Spacer -->
+                <ColumnConstraints prefWidth="250" />
+                <ColumnConstraints prefWidth="250" />
+                <ColumnConstraints prefWidth="20" /> <!-- Spacer -->
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="10" /> <!-- Spacer -->
+                <RowConstraints /> <!-- Title and search -->
+                <RowConstraints /> <!-- Table -->
+                <RowConstraints /> <!-- Pane menu -->
+                <RowConstraints prefHeight="10" /> <!-- Spacer -->
+            </rowConstraints>
+
+            <!-- Title -->
+            <Label text="Products" textFill="#505050" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font name="Open Sans Bold" size="18" />
+                </font>
+            </Label>
+
+            <!-- Search -->
+            <TextField fx:id="productsSearchField" onKeyReleased="#productsSearchKeyPressed" promptText="Search by Product ID or Name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+            <!-- Table -->
+            <TableView fx:id="productsTable" prefHeight="200" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                <columns>
+                    <TableColumn fx:id="productId" text="Product ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productId" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productName" prefWidth="150.0" text="Product Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productStock" prefWidth="105.0" text="Inventory Level">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productStock" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productPrice" prefWidth="120.0" text="Price/Cost per Unit">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productPrice" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <!-- Products menu -->
+            <ButtonBar GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <buttons>
+                    <Button fx:id="productsAddBtn" onAction="#productsAddBtnOnAction" text="Add" />
+                    <Button fx:id="productsModifyBtn" onAction="#productsModifyBtnOnAction" text="Modify" />
+                    <Button fx:id="productsDeleteBtn" onAction="#productsDeleteBtnOnAction" text="Delete" />
+                </buttons>
+            </ButtonBar>
+        </GridPane>
+
+        <!-- Exit pane -->
+        <ButtonBar GridPane.columnIndex="2" GridPane.fillHeight="40" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <buttons>
+                <Button fx:id="exitBtn" onAction="#exitProgram" text="Exit" />
+            </buttons>
+        </ButtonBar>
+    </GridPane>
+</GridPane>
